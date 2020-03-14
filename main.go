@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 	"net/http"
 )
 
@@ -15,5 +16,7 @@ func main() {
 	flag.StringVar(&dir, "dir", ".", "directory to export")
 	flag.Parse()
 
+	log.Printf("Listen on: %s\n", addr)
+	log.Printf("Export on: %s\n", dir)
 	panic(http.ListenAndServe(addr, http.FileServer(http.Dir(dir))))
 }
